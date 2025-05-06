@@ -1,62 +1,86 @@
 <template>
   <div class="container">
-    <!-- count 区域 -->
-    <div class="section count-section">
-      <p>用 ref 定义的 count: {{ count }}</p>
+    <!-- flower 区域 -->
+    <div class="section flower-section">
+      <p>用 reactive 定义的 flower: {{ flower.f1 }}</p>
 
-      <button @click="handleCount">修改count</button>
+      <button @click="handleFlower">修改flower</button>
     </div>
 
     <!-- wife 区域 -->
     <div class="section wife-section">
-      <p>用 shallowRef 定义的 wife:</p>
+      <p>用 shallowReactive 定义的 wife:</p>
       <p>姓名: {{ wife.name }}</p>
       <p>年龄: {{ wife.age }}</p>
-      <p>整个人: {{ wife }}</p>
+      <div>
+        整个人:
+        <pre> {{ JSON.stringify(wife, null, 2) }}</pre>
+      </div>
 
       <button @click="handleWifeName">名字改成刘亦菲</button>
       <button @click="handleWifeAge">年龄改成28</button>
+      <button @click="handleWifeFood">food改成龙虾</button>
       <button @click="handleNewWife">替换新老婆</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, shallowRef } from "vue";
+import { reactive, shallowReactive } from "vue";
 
-const count = ref(0);
+const flower = reactive({
+  f1: "小苍兰",
+});
 
 // 是响应式
-function handleCount() {
-  count.value++;
+function handleFlower() {
+  flower.f1 = "向日葵";
 }
 
 // ----------------------------------
 
-const wife = shallowRef({
+let wife = shallowReactive({
   name: "高圆圆",
   age: 18,
+  like: {
+    food: "宫保鸡丁",
+    band: {
+      name: "coldplay",
+    },
+  },
 });
 
-// 不是响应式
+// 是响应式
 function handleWifeName() {
-  wife.value.name = "刘亦菲";
-  console.log(wife.value);
+  wife.name = "刘亦菲";
+  console.log(wife);
+}
+
+// 是响应式
+function handleWifeAge() {
+  wife.age = 28;
+  console.log(wife);
 }
 
 // 不是响应式
-function handleWifeAge() {
-  wife.value.age = 28;
-  console.log(wife.value);
+function handleWifeFood() {
+  wife.like.food = "龙虾";
+  console.log(wife);
 }
 
 // 是响应式
 function handleNewWife() {
-  wife.value = {
-    name: "周子言",
+  Object.assign(wife, {
+    name: "艾玛沃特森",
     age: 27,
-  };
-  console.log(wife.value);
+    like: {
+      food: "羊肉串",
+      band: {
+        name: "告五人",
+      },
+    },
+  });
+  console.log(wife);
 }
 </script>
 
@@ -74,7 +98,7 @@ function handleNewWife() {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.count-section {
+.flower-section {
   background-color: #e6f7ff; /* 浅蓝色背景 */
 }
 
