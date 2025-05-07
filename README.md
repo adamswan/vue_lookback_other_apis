@@ -1,5 +1,9 @@
-# Vue 3 + TypeScript + Vite
+Vue3 的其他 API
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+1. ref() 和 shallowRef() 的区别
+2. reactive() 和 shallowReactive() 的区别
+3. readonly() 和 shallowReadonly() 的区别
+4. toRaw() 和 markRaw() 的区别
+5. customRef() 自定义 ref 对象
+6. <Teleport> 的使用
+7. <Suspense> 和 异步组件
