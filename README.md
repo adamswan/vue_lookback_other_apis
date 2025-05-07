@@ -7,3 +7,4 @@ Vue3 的其他 API
 5. customRef() 自定义 ref 对象
 6. <Teleport> 的使用
 7. <Suspense> 和 异步组件
+8. 全局自定义指令
